@@ -10,8 +10,7 @@ public class StepTriggerController : MonoBehaviour
 
     private void Awake()
     {
-        stepGenerator = FindObjectOfType<StepGenerator>();
-        UIManager = FindObjectOfType<UIManager>();
+        stepGenerator = FindObjectOfType<StepGenerator>();   
     }
 
     private void OnCollisionExit(Collision other)
@@ -19,10 +18,10 @@ public class StepTriggerController : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             StartCoroutine(AddRBWithDelay());
+            UIManager = FindObjectOfType<UIManager>();
             UIManager.UpdateScore();
         }
     }
-
 
     private IEnumerator AddRBWithDelay()
     {
@@ -32,7 +31,7 @@ public class StepTriggerController : MonoBehaviour
 
         if (gameObject.GetComponent<Rigidbody>() == null) gameObject.AddComponent<Rigidbody>();
 
-        yield return new WaitForSeconds(waitForSec);
+        yield return new WaitForSeconds(waitForSec * 3f);
 
         AddToPool(stepGenerator.stepPool, gameObject);
     }

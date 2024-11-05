@@ -6,7 +6,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     [SerializeField] private TMP_Text scoreTxt, bestScoreTxt, gamesPlayedTxt;
     private int scoreValue = 0;
 
-    private void Start()
+    private void Awake()
     {
         scoreTxt.text = scoreValue.ToString();
         bestScoreTxt.text = "Best Score: " + PlayerPrefs.GetInt("BestScore").ToString();
